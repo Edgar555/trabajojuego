@@ -33,9 +33,7 @@ public class Cursor {
 		    	
 		      localColor = new Color(1, 1, 1, 0);
 		    }
-		
-		
-		
+				
 		 BufferedImage Imagenlocal = new BufferedImage(32, 32, 2);
 		 Graphics2D imagen2D = Imagenlocal.createGraphics();
 		    
@@ -52,11 +50,7 @@ public class Cursor {
 		    	imagen2D.drawLine(matriz2[0][i], matriz2[1][i], matriz2[0][i], matriz2[1][i]);
 		    }
 		    
-		    return new ImageIcon(Imagenlocal).getImage();
+		    return new ImageIcon(Imagenlocal).getImage();		
 		
-		
-	  }
-	
-	
-	
+	  }	
 }
