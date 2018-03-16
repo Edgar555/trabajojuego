@@ -18,6 +18,7 @@ public class PegSolitario extends Frame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	static MenuPrincipal PegMenu = new MenuPrincipal();
 	
 	static PegSolitario Peg = new PegSolitario();
 	
@@ -28,6 +29,7 @@ public class PegSolitario extends Frame{
 	    setBackground(Color.white);
 	    setSize(350,375 );
 	    setVisible(true);
+	    setMenuBar(PegMenu.menuCreate());
 	    
 	    addWindowListener(new WindowAdapter(){
 	    	  public void windowClosing(WindowEvent we){
