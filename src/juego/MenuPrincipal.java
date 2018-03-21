@@ -20,9 +20,8 @@ public class MenuPrincipal implements ActionListener {
 	boolean firstRun = true;
 	boolean[] windowOpen = new boolean[]{false, false, false, false, false, false, false};
 	String[] tableroItems = new String[]{"Tablero tipo frances", "Tablero tipo ingles", "Tablero tipo Diamante"};
-	String[] configuracionItems = new String[]{};
-	int[] tableroShortcuts = new int[]{82, 66, 72};
-	int[] configuracionShortcuts = new int[]{};
+	String[] configuracionItems = new String[]{"Latin Cross", "Pyramid","Lamp","Diamond","Plus","Butaco","Doble","Hat"};
+	
 
 	
 	public MenuPrincipal() {
@@ -49,13 +48,13 @@ public class MenuPrincipal implements ActionListener {
 	    int j;
 	    for ( j = 0; j < this.tableroItems.length; j++)
 	    {
-	      localMenuItem = new MenuItem(this.tableroItems[j], new MenuShortcut(this.configuracionShortcuts[j]));
+	      localMenuItem = new MenuItem(this.tableroItems[j]);
 	      localMenuItem.addActionListener(this);
 	      localMenu1.add(localMenuItem);
 	    }
 	    for (j = 0; j < this.configuracionItems.length; j++)
 	    {
-	      localMenuItem = new MenuItem(this.configuracionItems[j], new MenuShortcut(this.tableroShortcuts[j]));
+	      localMenuItem = new MenuItem(this.configuracionItems[j]);
 	      localMenuItem.addActionListener(this);
 	      localMenu2.add(localMenuItem);
 	    }
