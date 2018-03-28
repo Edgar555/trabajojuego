@@ -64,6 +64,7 @@ public class PegSolitario extends Frame {
 		setVisible(true);
 		setMenuBar(PegMenu.menuCreate());
 		cargarTablero();
+		pintarTablero();
 		setIconos();
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent we) {
@@ -150,7 +151,72 @@ public class PegSolitario extends Frame {
 		}
 	}
 
-	
+	public void pintarTablero() {
+		this.wallImg = new BufferedImage(25, 25, 1);
+		this.imagenPeg = new BufferedImage(28, 28, 2);
+		Graphics2D localGraphics2D1 = this.imagenPeg.createGraphics();
+
+		Color localColor = new Color(0, 0, 0, 0);
+		localGraphics2D1.setColor(localColor);
+		localGraphics2D1.setComposite(AlphaComposite.Src);
+		localGraphics2D1.fill(new Rectangle2D.Float(20.0F, 20.0F, 100.0F, 20.0F));
+		localGraphics2D1.setColor(new Color(0, 0, 139));
+		localGraphics2D1.fillOval(1, 1, 26, 26);
+		localGraphics2D1.setColor(Color.YELLOW);
+		int i;
+		for (i = 0; i < 3; i++) {
+			localGraphics2D1.drawOval(3 - i, 3 - i, 22 + i * 2, 22 + i * 2);
+		}
+		for (i = 0; i < this.pegPixels[0].length; i++) {
+			localGraphics2D1.drawLine(this.pegPixels[0][i], this.pegPixels[1][i], this.pegPixels[0][i],
+					this.pegPixels[1][i]);
+		}
+		for (i = 0; i < this.pegPixels2[0].length; i++) {
+			localGraphics2D1.drawLine(this.pegPixels2[0][i], this.pegPixels2[1][i], this.pegPixels2[0][i],
+					this.pegPixels2[1][i]);
+		}
+		localGraphics2D1.setColor(new Color(80, 80, 80));
+		for (i = 0; i < this.playPixels[0].length; i++) {
+			localGraphics2D1.drawLine(this.playPixels[0][i], this.playPixels[1][i], this.playPixels[0][i],
+					this.playPixels[1][i]);
+		}
+		this.imagenCirculo = new BufferedImage(28, 28, 2);
+		Graphics2D localGraphics2D2 = this.imagenCirculo.createGraphics();
+
+		localGraphics2D2.setColor(localColor);
+		localGraphics2D2.setComposite(AlphaComposite.Src);
+		localGraphics2D2.fill(new Rectangle2D.Float(20.0F, 20.0F, 100.0F, 20.0F));
+		localGraphics2D2.setColor(new Color(80, 80, 80));
+		localGraphics2D2.fillOval(1, 1, 26, 26);
+		localGraphics2D2.drawLine(5, 4, 5, 4);
+		localGraphics2D2.setColor(Color.WHITE);
+		int j;
+		for (j = 0; j < 3; j++) {
+			localGraphics2D2.drawOval(3 - j, 3 - j, 22 + j * 2, 22 + j * 2);
+		}
+		for (j = 0; j < this.pegPixels[0].length; j++) {
+			localGraphics2D2.drawLine(this.pegPixels[0][j], this.pegPixels[1][j], this.pegPixels[0][j],
+					this.pegPixels[1][j]);
+		}
+		for (j = 0; j < this.pegPixels2[0].length; j++) {
+			localGraphics2D2.drawLine(this.pegPixels2[0][j], this.pegPixels2[1][j], this.pegPixels2[0][j],
+					this.pegPixels2[1][j]);
+		}
+		localGraphics2D2.setColor(new Color(80, 80, 80));
+		for (j = 0; j < this.playPixels[0].length; j++) {
+			localGraphics2D2.drawLine(this.playPixels[0][j], this.playPixels[1][j], this.playPixels[0][j],
+					this.playPixels[1][j]);
+		}
+		Graphics2D localGraphics2D3 = this.wallImg.createGraphics();
+		localGraphics2D3.setColor(Color.black);
+		localGraphics2D3.fillRect(0, 0, 25, 25);
+		localGraphics2D3.setColor(Color.white);
+		localGraphics2D3.drawString(" ", 8, 18);
+
+		pegIcon = new ImageIcon(this.imagenPeg);
+		circuloIcon = new ImageIcon(this.imagenCirculo);
+
+	}
 
 	public void setIconos() {
 		for (int i = 0; i < 7; i++) {
