@@ -85,7 +85,7 @@ public class Pegs {
 	  DecimalFormat fr = new DecimalFormat("00");
 	  
 	  
-	  public void checkGameover()
+	  public void verificarfindeljuego()
 	  {
 	    this.moveablePegs = 0;
 	    for (int i = 0; i < this.layoutWidth; i++) {
@@ -158,6 +158,67 @@ public class Pegs {
 	      JOptionPane.showMessageDialog(null, "YOU LOST!!! Level: " + this.pegLevel, "Gameover", 2);
 	    }
 	  }
+	  
+	  
+	  public void verificarsolucion()
+	  {
+	    //Debug("Checking if you won...");
+	    int i = 1;
+	    for (int j = 0; j < solBtn.length; j++) {
+	      if (solBtn[j].getActionCommand().equals(hole[j].getActionCommand())) {
+	        this.temp = this.temp;
+	      } else {
+	        i = 0;
+	      }
+	    }
+	    if (i == 1)
+	    {
+	      victoria();
+	    }
+	    else if (this.numPegs <= this.solutionNumPegs)
+	    {
+	      //Debug("Gameover");
+	      JOptionPane.showMessageDialog(null, "YOU LOST!!! Level: " + this.pegLevel, "Gameover", 2);
+	    }
+	  }
+	  
+	  
+	  public void victoria()
+	  {
+	    //Debug("You Won");
+	    this.temp = null;
+	    this.tTime = getTime();
+	    while (this.temp == null)
+	    {
+	      this.temp = JOptionPane.showInputDialog(null, "YOU WON!!! Level: " + this.pegLevel + " Time: " + this.tTime + "\nEnter Name: ", "Congrats", 2);
+	      if (Verify.allLetters(this.temp) == true) {
+	        PegMenu.yourName = this.temp;
+	      } else {
+	        this.temp = null;
+	      }
+	    }
+	    PegMenu.yourTime = (Integer.parseInt(this.tTime.substring(0, this.tTime.indexOf(":"))) * 60 + Integer.parseInt(this.tTime.substring(this.tTime.indexOf(":") + 1)));
+	    PegMenu.yourLevel = this.pegLevel;
+	    //Debug("Score: " + PegMenu.yourName + " Time:" + PegMenu.yourTime + " Level:" + PegMenu.yourLevel);
+	    if (this.pegLevel.compareTo("(9)custom.txt") != 0) {
+	      this.pegLevel = ("(" + (Integer.parseInt(this.pegLevel.substring(1, 2)) + 1) + ")" + PegMenu.levelItems[(Integer.parseInt(this.pegLevel.substring(1, 2)) + 1)].toLowerCase() + ".txt");
+	    }
+	    //Debug("Advancing To Next Level: " + this.pegLevel);
+	    restartGame();
+	    PegMenu.selectedLevel = Integer.parseInt(PegMenu.yourLevel.substring(1, 2));
+	    if (PegMenu.yourName.equals("DEBUG"))
+	    {
+	      PegMenu.yourName = "";
+	      PegMenu.yourTime = 0;
+	      PegMenu.yourLevel = "";
+	    }
+	    else
+	    {
+	      PegMenu.Highscores();
+	    }
+	  }
+	  
+	  
 	  
 	  
 }
